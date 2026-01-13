@@ -1,0 +1,67 @@
+{
+    "name": "@affectively/utils",
+    "version": "1.0.0",
+    "description": "TypeScript utility functions for API retry, logging, URL shortening, and more.",
+    "main": "dist/index.js",
+    "module": "dist/index.mjs",
+    "types": "dist/index.d.ts",
+    "exports": {
+        ".": {
+            "import": "./dist/index.mjs",
+            "require": "./dist/index.js",
+            "types": "./dist/index.d.ts"
+        },
+        "./api-retry": {
+            "import": "./dist/api-retry.mjs",
+            "require": "./dist/api-retry.js",
+            "types": "./dist/api-retry.d.ts"
+        },
+        "./logger": {
+            "import": "./dist/logger.mjs",
+            "require": "./dist/logger.js",
+            "types": "./dist/logger.d.ts"
+        },
+        "./short-url": {
+            "import": "./dist/short-url.mjs",
+            "require": "./dist/short-url.js",
+            "types": "./dist/short-url.d.ts"
+        }
+    },
+    "files": [
+        "dist",
+        "LICENSE",
+        "README.md"
+    ],
+    "scripts": {
+        "build": "tsup src/index.ts src/api-retry.ts src/logger.ts src/short-url.ts --format cjs,esm --dts",
+        "prepublishOnly": "npm run build",
+        "test": "bun test",
+        "lint": "eslint src/"
+    },
+    "keywords": [
+        "utilities",
+        "api-retry",
+        "logger",
+        "url-shortener",
+        "typescript",
+        "fetch",
+        "authentication"
+    ],
+    "author": "AFFECTIVELY <opensource@affectively.app>",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/affectively-ai/utils.git"
+    },
+    "bugs": {
+        "url": "https://github.com/affectively-ai/utils/issues"
+    },
+    "homepage": "https://github.com/affectively-ai/utils#readme",
+    "devDependencies": {
+        "tsup": "^8.0.0",
+        "typescript": "^5.9.0"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
+}
