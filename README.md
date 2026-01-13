@@ -28,10 +28,10 @@ import { fetchWithRetry, logger, generateShortCode } from '@affectively/utils';
 
 // API retry with auth
 const response = await fetchWithRetry('/api/data', {
-  method: 'GET'
+ method: 'GET'
 }, {
-  maxRetries: 3,
-  getToken: async () => localStorage.getItem('token')
+ maxRetries: 3,
+ getToken: async () => localStorage.getItem('token')
 });
 
 // Logging
@@ -52,9 +52,9 @@ import { fetchWithRetry, fetchJsonWithRetry } from '@affectively/utils/api-retry
 
 // Basic retry
 const response = await fetchWithRetry(url, options, {
-  maxRetries: 2,
-  getToken: async () => getAuthToken(),
-  isAuthError: (response) => response.status === 401
+ maxRetries: 2,
+ getToken: async () => getAuthToken(),
+ isAuthError: (response) => response.status === 401
 });
 
 // JSON retry with auto-parsing
@@ -108,4 +108,4 @@ MIT License - see [LICENSE](./LICENSE) for details.
 
 ---
 
-Made with ❤️ by [AFFECTIVELY](https://affectively.app)
+Made with ️ by [AFFECTIVELY](https://affectively.ai)
