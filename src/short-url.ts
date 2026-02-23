@@ -8,42 +8,42 @@
 
 const SHORT_CODE_LENGTH = 8;
 const BASE62_CHARS =
-    '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 
 /**
  * Generate random bytes using Web Crypto API (browser) or Node.js crypto
  */
 function getRandomBytes(length: number): Uint8Array {
-    // Use Web Crypto API if available (browser/Deno/Bun)
-    if (
-        typeof globalThis !== 'undefined' &&
-        typeof globalThis.crypto !== 'undefined' &&
-        typeof globalThis.crypto.getRandomValues === 'function'
-    ) {
-        const array = new Uint8Array(length);
-        globalThis.crypto.getRandomValues(array);
-        return array;
-    }
+  // Use Web Crypto API if available (browser/Deno/Bun)
+  if (
+    typeof globalThis !== 'undefined' &&
+    typeof globalThis.crypto !== 'undefined' &&
+    typeof globalThis.crypto.getRandomValues === 'function'
+  ) {
+    const array = new Uint8Array(length);
+    globalThis.crypto.getRandomValues(array);
+    return array;
+  }
 
-    // Fallback to Node.js crypto for server-side
-    // Use dynamic require to avoid bundler issues
-    let crypto: unknown = null;
-    if (typeof require !== 'undefined') {
-        try {
-            crypto = require('crypto');
-        } catch {
-            crypto = null;
-        }
+  // Fallback to Node.js crypto for server-side
+  // Use dynamic require to avoid bundler issues
+  let crypto: unknown = null;
+  if (typeof require !== 'undefined') {
+    try {
+      crypto = require('crypto');
+    } catch {
+      crypto = null;
     }
-    if (
-        crypto &&
-        typeof (crypto as { randomBytes?: unknown }).randomBytes === 'function'
-    ) {
-        return (crypto as { randomBytes: (n: number) => Uint8Array }).randomBytes(
-            length
-        );
-    }
-    throw new Error('No secure random number generator available.');
+  }
+  if (
+    crypto &&
+    typeof (crypto as { randomBytes?: unknown }).randomBytes === 'function'
+  ) {
+    return (crypto as { randomBytes: (n: number) => Uint8Array }).randomBytes(
+      length
+    );
+  }
+  throw new Error('No secure random number generator available.');
 }
 
 /**
@@ -60,13 +60,13 @@ function getRandomBytes(length: number): Uint8Array {
  * ```
  */
 export function generateShortCode(): string {
-    const bytes = getRandomBytes(SHORT_CODE_LENGTH);
-    return Array.from(bytes)
-        .map((byteValue) => {
-            const index = byteValue % BASE62_CHARS.length;
-            return BASE62_CHARS.charAt(index);
-        })
-        .join('');
+  const bytes = getRandomBytes(SHORT_CODE_LENGTH);
+  return Array.from(bytes)
+    .map((byteValue) => {
+      const index = byteValue % BASE62_CHARS.length;
+      return BASE62_CHARS.charAt(index);
+    })
+    .join('');
 }
 
 /**
@@ -83,11 +83,11 @@ export function generateShortCode(): string {
  * ```
  */
 export function createShortUrl(shortCode: string, baseUrl?: string): string {
-    const base =
-        baseUrl ||
-        (typeof process !== 'undefined'
-            ? process.env?.['NEXT_PUBLIC_BASE_URL']
-            : undefined) ||
-        'https://affectively.app';
-    return `${base}/s/${shortCode}`;
+  const base =
+    baseUrl ||
+    (typeof process !== 'undefined'
+      ? process.env?.['NEXT_PUBLIC_BASE_URL']
+      : undefined) ||
+    'https://affectively.app';
+  return `${base}/s/${shortCode}`;
 }

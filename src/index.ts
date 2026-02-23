@@ -9,9 +9,9 @@
 
 // API Retry
 export {
-    fetchWithRetry,
-    fetchJsonWithRetry,
-    type RetryOptions,
+  fetchWithRetry,
+  fetchJsonWithRetry,
+  type RetryOptions,
 } from './api-retry';
 
 // Logger
