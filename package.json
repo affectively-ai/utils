@@ -1,6 +1,6 @@
 {
   "name": "@affectively/utils",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "TypeScript utility functions for API retry, logging, URL shortening, and more.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -47,8 +47,8 @@
     "fetch",
     "authentication"
   ],
-  "author": "AFFECTIVELY <opensource@affectively.ai>",
-  "license": "MIT",
+  "author": "Edgework DAO",
+  "license": "UNLICENSED",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/affectively-ai/utils.git"
