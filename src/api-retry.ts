@@ -154,14 +154,16 @@ export async function fetchWithRetry(
       // Return the response (success)
       return response;
     } catch (error) {
-      // Don't retry on network errors, only on auth errors
-      // Network errors should be thrown immediately
+      // Retry transient network errors if retries remain
+      if (attempt < maxRetries) {
+        attempt++;
+        continue;
+      }
       throw error instanceof Error ? error : new Error(String(error));
     }
   }
 
-  // Should never reach here, but TypeScript needs it
-  throw new Error('Request failed after retries');
+  throw new Error(`Request failed after ${maxRetries} retry attempts`);
 }
 
 /**
