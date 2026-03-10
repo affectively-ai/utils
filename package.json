@@ -1,6 +1,6 @@
 {
   "name": "@affectively/utils",
-  "version": "1.0.3",
+  "version": "5.0.0",
   "description": "TypeScript utility functions for API retry, logging, URL shortening, and more.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -47,7 +47,7 @@
     "fetch",
     "authentication"
   ],
-  "author": "Edgework DAO",
+  "author": "Taylor William Buley (https://buley.fyi)",
   "license": "UNLICENSED",
   "repository": {
     "type": "git",
